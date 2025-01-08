@@ -24,14 +24,35 @@ eax 와 rax 는 4비트냐 8비트냐의 차이임.
 - rax : system call number [링크 참조](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/) 
 
 - rdi, rsi, rdx, r10. r8, r9 : system call 에 들어가는 인자 순서
-
+- 사용 예시
 ```
-    예시 : sys_write의 경우 rax, 1
-    write(1, "asdf", 4)인자가 3개인데
-    rdi에 1,
-    rsi 에 "asdf"
-    rdx 에 4 를 넣고
-    syscall 을 적어서 실행
+;read(fd, buf, length)
+read_example:
+        mov     rax, 0          ; sys_read
+        mov     rdi, 0          ; stdin
+        mov     rsi, buffer     ; 입력 버퍼
+        mov     rdx, count      ; 읽을 바이트 수
+        syscall
+
+; open(filename, flags, mode)
+open_example:
+        mov     rax, 2          ; sys_open
+        mov     rdi, filename   ; 파일명
+        mov     rsi, 0          ; O_RDONLY
+        mov     rdx, 0644o      ; 권한 (옵션)
+        syscall
+
+; close(fd)
+close_example:
+        mov     rax, 3          ; sys_close
+        mov     rdi, fd         ; 파일 디스크립터
+        syscall
+
+; exit(status)
+exit_example:
+        mov     rax, 60         ; sys_exit
+        mov     rdi, status     ; 종료 상태
+        syscall
 ```
 
 ### 함수 인자 전달 순서

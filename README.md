@@ -107,15 +107,15 @@ ld file.o -o executable
 
 ### 스택 관리 책임
 1. Caller의 책임:
-  - 함수 호출 전 인자를 올바른 순서로 전달
-  - 사용된 스택 공간 정리 (cdecl convention 준수)
-  - 예시: `add rsp, N` (N은 푸시한 인자의 크기)
-  - Caller-saved 레지스터 보존
+    - 함수 호출 전 인자를 올바른 순서로 전달
+    - 사용된 스택 공간 정리 (cdecl convention 준수)
+    - 예시: `add rsp, N` (N은 푸시한 인자의 크기)
+    - Caller-saved 레지스터 보존
 
 2. Callee의 책임:
-  - 스택 프레임 설정 및 정리
-  - Callee-saved 레지스터 값 보존 및 복원
-  - 반환 값을 RAX에 저장
+    - 스택 프레임 설정 및 정리
+    - Callee-saved 레지스터 값 보존 및 복원
+    - 반환 값을 RAX에 저장
 
 ### 레지스터 사용 규약
 

@@ -106,13 +106,13 @@ ld file.o -o executable
 ## System V AMD64 ABI
 
 ### 스택 관리 책임
-- Caller의 책임:
+1. Caller의 책임:
   - 함수 호출 전 인자를 올바른 순서로 전달
   - 사용된 스택 공간 정리 (cdecl convention 준수)
   - 예시: `add rsp, N` (N은 푸시한 인자의 크기)
   - Caller-saved 레지스터 보존
 
-- Callee의 책임:
+2. Callee의 책임:
   - 스택 프레임 설정 및 정리
   - Callee-saved 레지스터 값 보존 및 복원
   - 반환 값을 RAX에 저장
@@ -120,15 +120,20 @@ ld file.o -o executable
 ### 레지스터 사용 규약
 
 #### 인자 전달용 레지스터 (Parameter Passing)
+
 1. 정수/포인터 타입 인자
-   - 순서: RDI, RSI, RDX, RCX, R8, R9
-   - 추가 인자는 스택을 통해 전달 (right to left)
+
+    - 순서: RDI, RSI, RDX, RCX, R8, R9
+    - 추가 인자는 스택을 통해 전달 (right to left)
+
 
 2. 부동소수점 인자
-   - XMM0 ~ XMM7 레지스터 사용
-   - 추가 인자는 스택을 통해 전달
+
+    - XMM0 ~ XMM7 레지스터 사용
+    - 추가 인자는 스택을 통해 전달
 
 #### 반환값 레지스터
+
 - 정수/포인터: RAX, RDX
 - 부동소수점: XMM0, XMM1
 

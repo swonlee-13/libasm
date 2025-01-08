@@ -16,6 +16,19 @@ eax 와 rax 는 4비트냐 8비트냐의 차이임.
 과제에서 스택 관리 등을 할 때는 8바이트인 r 시리즈를 사용하면 된다.
 ```
 
+## 어셈블리 명령 개요
+1. 명령어의 종류 [링크 참조](https://eteo.tistory.com/296)
+    - 데이터 이동: mov
+    - 산술 연산: inc, dec, add, sub
+    - 논리 연산: and, or, xor, not
+    - 비교: cmp, test
+    - 스택: push, pop
+    - 프로시져: call, ret, leave3
+    - 시스템 콜:  syscall
+2. 어셈블리의 피연산자 [링크 참조](https://eteo.tistory.com/296)
+    - WORD: 포인터에서 2바이트 참조
+    - DWORD: 포인터에서 4바이트 참조
+    - QWORD: 포인터에서 8바이트 참조
 
 
 ## 각 레지스터 용도에 따른 재분류

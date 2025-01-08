@@ -103,7 +103,7 @@ exit_example:
     section .data
         global message        ; 다른 파일에서 접근 가능하도록 global 선언
         message db "Hello", 0 ; message는 데이터 이름, db 는 아래 참조, 0은 아스키로 현재는 '\0'. \n 은 10
-        extern malloc
+        extern malloc ; 외부 함수를 불러올 때 extern 을 이용한다.
         extern free
     ```
 - 데이터 크기 정의 예시
@@ -133,7 +133,7 @@ exit_example:
     ```
 - 힙 영역과 관련된 정보를 저장하고, 관리한다.
 - 이런 식으로는 동적인 관리를 할 수 없다.
-- 따라서, 이것 보다는 아래와 heap_example 처럼 brk 로 관리하는 것이 더 용이하다.
+- 따라서, 이것 보다는 아래와 heap_example 처럼 힙의 시작과 끝, 현재를 관리하고, brk 로 관리하는 것이 더 용이하다.
     ```nasm
     ; 힙을 관리하는 예시 코드
     section .data

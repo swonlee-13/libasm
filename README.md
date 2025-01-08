@@ -57,16 +57,16 @@ exit_example:
 
 ### 함수 인자 전달 순서
 
->calaling convention 참고
+1. calaling convention 참고
 
 ### 호출자 지정 레지스터
- >시스템콜 실행법 참고
+1. 시스템콜 실행법 참고
 
 ### 피호출자(callee-saved) 순서
- >rbx, rbp, r12, r13, r14,  r15,  rsp
+1. rbx, rbp, r12, r13, r14,  r15,  rsp
 
 ### 임시 계산을 위한 레지스터 사용 추천 순서
- >r10, r11, rax(결과값 지정 전 까지 임시 사s용 가능)
+1. r10, r11, rax(결과값 지정 전 까지 임시 사s용 가능)
 
 ### 함수 용도(또는 full name)
 - rsi: source index

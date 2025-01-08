@@ -116,6 +116,8 @@ exit_example:
 - rsi: Source Index
 - rdi: Destination Index
 - rbp: base pointer
+- rcx: `loop counter` - loop 은 자체적으로 rcx 를 이용한다.
+
 
 ---
 
@@ -255,3 +257,26 @@ ld file.o -o executable
    pop rbp
    ret
    ```
+
+# 기타 정보
+1. loop 연산
+- loop 연산자를 쓰는것도 좋지만, loop 은 느려서 현대 어셈블리에서는 dec 와 jnz 를 사용한다.
+   ```
+   ; rcx 사용
+    mov rcx, 10      
+    .loop:
+        ; 루프 본문
+        dec rcx      
+        jnz .loop   
+   ```
+2. 점프 명령어
+    1. 부호 없는 수 비교 시
+    - jz/je: Jump if Zero / Equal (ZF=1)
+    - jnz/jne: Jump if Not Zero / Not Equal (ZF=0)
+    - ja: Jump if Above (CF=0 and ZF=0)
+    - jb: Jump if Below (CF=1)<br>
+  2. 부호 있는 수 비교 시<br>
+    - jg: Jump if Greater (ZF=0 and SF=OF)
+    - jl: Jump if Less (SF≠OF)
+    - jge: Jump if Greater or Equal (SF=OF)
+    - jle: Jump if Less or Equal (ZF=1 or SF≠OF)

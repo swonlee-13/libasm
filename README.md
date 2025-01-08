@@ -1,5 +1,6 @@
 # libasm
 
+---
 
 ## 과제 목표
 주어진 함수들을 직접 asm 으로 구현하는 것.
@@ -23,6 +24,8 @@
 - 소스 파일은 `.s` 확장자 사용
 - NASM(Netwide Assembler)으로 컴파일
 - Intel 문법 사용 (AT&T 문법 사용 금지)
+
+---
 
 ## Intel x86-64 문법의 특징
 
@@ -113,6 +116,8 @@ exit_example:
 - rdi: Destination Index
 - rbp: base pointer
 
+---
+
 # 섹션 정리
 1. .data 섹션
 - data 섹션(.data)은 프로그램에서 초기화된 정적 변수를 위한 공간으로, 글로벌 변수와 정적 로컬 변수를 위한 공간이다. 이 섹션의 크기는 런타임에서 변경되지 않는다. data 섹션은 읽기와 쓰기가 가능하나, 읽기 전용을 위한 .rodata 섹션이 존재한다.
@@ -161,6 +166,9 @@ exit_example:
     ```
 4. 기타 섹션
 - .bss, .stack, .rodata
+
+---
+
 # x86-64 Calling Conventions
 
 예시 컴파일 명령:

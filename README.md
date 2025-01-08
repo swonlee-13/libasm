@@ -128,14 +128,19 @@ exit_example:
 3. heap 섹션
 - 힙을 관리하는 영역
     ```nasm
+    section .heap
+        resb 4096           ; 4KB의 힙 공간 예약
+    ```
+- 힙 영역과 관련된 정보를 저장하고, 관리한다.
+- 이런 식으로는 동적인 관리를 할 수 없다.
+- 따라서, 이것 보다는 아래와 heap_example 처럼 brk 로 관리하는 것이 더 용이하다.
+    ```nasm
     ; 힙을 관리하는 예시 코드
     section .data
         heap_start dd 0       ; 힙 시작 주소
         heap_current dd 0     ; 현재 힙 포인터
         heap_end dd 0         ; 힙 끝 주소
     ```
-- 힙 영역과 관련된 정보를 저장하고, 관리한다.
-- 이 힙 영역의 정보를 이용해서 동적 할당을 직접 관리해야한다.
 4. 기타 섹션
 - .bss, .stack, .rodata
 # x86-64 Calling Conventions

@@ -4,18 +4,19 @@
 
 ## 과제 목표
 주어진 함수들을 직접 asm 으로 구현하는 것.
-◦ ft_strlen (man 3 strlen)
-◦ ft_strcpy (man 3 strcpy)
-◦ ft_strcmp (man 3 strcmp)
-◦ ft_write (man 2 write)
-◦ ft_read (man 2 read)
-◦ ft_strdup (man 3 strdup, you can call to malloc)
+- ft_strlen (man 3 strlen)
+- ft_strcpy (man 3 strcpy)
+- ft_strcmp (man 3 strcmp)
+- ft_write (man 2 write)
+- ft_read (man 2 read)
+- ft_strdup (man 3 strdup, you can call to malloc)
 
 ### 보너스
-• ft_atoi_base (like the one in the piscine)
-• ft_list_push_front (like the one in the piscine) • ft_list_size (like the one in the piscine)
-• ft_list_sort (like the one in the piscine)
-• ft_list_remove_if (like the one in the piscine)
+- ft_atoi_base (like the one in the piscine)
+- ft_list_push_front (like the one in the piscine)
+- ft_list_size (like the one in the piscine)
+- ft_list_sort (like the one in the piscine)
+- ft_list_remove_if (like the one in the piscine)
 
 ---
 

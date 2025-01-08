@@ -1,5 +1,11 @@
 # libasm
 
+## 컴파일 환경 요구사항
+- 64비트 어셈블리 코드로 작성 필수
+- 소스 파일은 `.s` 확장자 사용
+- NASM(Netwide Assembler)으로 컴파일
+- Intel 문법 사용 (AT&T 문법 사용 금지)
+
 ## Intel x86-64 문법의 특징
 
 1. Intel 문법은 destination, source 순서로 작성
@@ -89,13 +95,50 @@ exit_example:
 - rdi: Destination Index
 - rbp: base pointer
 
-# x86-64 Calling Conventions
+# 섹션 정리
+1. .data 섹션
+- data 섹션(.data)은 프로그램에서 초기화된 정적 변수를 위한 공간으로, 글로벌 변수와 정적 로컬 변수를 위한 공간이다. 이 섹션의 크기는 런타임에서 변경되지 않는다. data 섹션은 읽기와 쓰기가 가능하나, 읽기 전용을 위한 .rodata 섹션이 존재한다.
 
-## 컴파일 환경 요구사항
-- 64비트 어셈블리 코드로 작성 필수
-- 소스 파일은 `.s` 확장자 사용
-- NASM(Netwide Assembler)으로 컴파일
-- Intel 문법 사용 (AT&T 문법 사용 금지)
+    ```nasm
+    section .data
+        global message        ; 다른 파일에서 접근 가능하도록 global 선언
+        message db "Hello", 0 ; message는 데이터 이름, db 는 아래 참조, 0은 아스키로 현재는 '\0'. \n 은 10
+        extern malloc
+        extern free
+    ```
+- 데이터 크기 정의 예시
+    ```nasm
+    section .data
+        num    dd    42        ; 4바이트 정수
+        str    db    "Hi", 0   ; 문자열
+        arr    db    1,2,3,4   ; 바이트 배열
+        char   db    'A'       ; 단일 문자
+    ```
+- 내 함수를 외부에서 사용 가능하게 하기 위해서는 global 키워드 사용
+- 외부의 함수를 가져오기 위해서는 extern 키워드 사용
+
+2. text 섹션
+- 실제 실행 코드가 들어가는 영역.
+    ```
+    section .text
+            global _start
+    ```
+이렇게 적으면 _start 가 실행 지점이 된다.
+
+3. heap 섹션
+- 힙을 관리하는 영역
+    ```nasm
+    ; 힙을 관리하는 예시 코드
+    section .data
+        heap_start dd 0       ; 힙 시작 주소
+        heap_current dd 0     ; 현재 힙 포인터
+        heap_end dd 0         ; 힙 끝 주소
+    ```
+- 힙 영역과 관련된 정보를 저장하고, 관리한다.
+- 이 힙 영역의 정보를 이용해서 동적 할당을 직접 관리해야한다.
+4. 기타 섹션
+- .bss, .stack, .rodata
+# x86-64 Calling Conventions
 
 예시 컴파일 명령:
 ```bash

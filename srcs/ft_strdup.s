@@ -6,7 +6,6 @@ section .text
     global	_ft_strdup
 	extern	___error
     extern	malloc
-    extern	free
 	extern	_ft_strlen
 	extern	_ft_strcpy
 

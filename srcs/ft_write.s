@@ -19,7 +19,8 @@ _ft_write:
 	call	___error
 	pop		dword [rax]
 	mov		rax, -1
-
+	ret
+	
 .done:
     mov     rsp, rbp
     pop     rbp

@@ -98,7 +98,7 @@ exit_example:
 
 ### 함수 인자 전달 순서
 
-- calaling convention 참고
+- calling convention 참고
 
 ### 호출자 지정 레지스터
 - 시스템콜 실행법 참고
@@ -107,14 +107,12 @@ exit_example:
 - rbx, rbp, r12, r13, r14,  r15,  rsp
 
 ### 임시 계산을 위한 레지스터 사용 추천 순서
-- r10, r11, rax(결과값 지정 전 까지 임시 사s용 가능)
+- r10, r11, rax(결과값 지정 전 까지 임시 사용 가능)
 
-### 함수 용도(또는 full name)
+### 레지스터 용도(또는 full name)
 - rsi: source index
 - rdi: destination index
 - rdx: data register
-- rsi: Source Index
-- rdi: Destination Index
 - rbp: base pointer
 - rcx: `loop counter` - loop 은 자체적으로 rcx 를 이용한다.
 
@@ -200,7 +198,7 @@ ld file.o -o executable
 
 1. 정수/포인터 타입 인자
 
-    - 순서: RDI, RSI, RDX, RCX, R8, R9
+    - 순서: rdi, rsi, rdx, rcx, r8, r9
     - 추가 인자는 스택을 통해 전달 (right to left)
 
 
@@ -248,7 +246,7 @@ ld file.o -o executable
    ```nasm
    push rbp
    mov rbp, rsp
-   sub rsp, N  ; N = 필요한 스택 크기 (16의 배수)
+   sub rsp, N  ; N = 필요한 스택 크기 (16의 배수), 배열을 선언할 때.
    ```
 
 3. 에필로그 (Epilogue)
@@ -260,7 +258,7 @@ ld file.o -o executable
 
 # 기타 정보
 1. loop 연산
-- loop 연산자를 쓰는것도 좋지만, loop 은 느려서 현대 어셈블리에서는 dec 와 jnz 를 사용한다.
+- loop 연산자를 쓰는것도 좋지만, loop 은 느려서 현대 어셈블리에서는 `inc`/`dec` 와 `jump` 를 사용한다.
    ```
    ; rcx 사용
     mov rcx, 10      
@@ -269,14 +267,22 @@ ld file.o -o executable
         dec rcx      
         jnz .loop   
    ```
-2. 점프 명령어
+2. 점프 명령어[링크 참조](https://velog.io/@kitkat-42/libasm)
     1. 부호 없는 수 비교 시
     - jz/je: Jump if Zero / Equal (ZF=1)
     - jnz/jne: Jump if Not Zero / Not Equal (ZF=0)
     - ja: Jump if Above (CF=0 and ZF=0)
     - jb: Jump if Below (CF=1)<br>
-  2. 부호 있는 수 비교 시<br>
+    2. 부호 있는 수 비교 시
     - jg: Jump if Greater (ZF=0 and SF=OF)
     - jl: Jump if Less (SF≠OF)
     - jge: Jump if Greater or Equal (SF=OF)
     - jle: Jump if Less or Equal (ZF=1 or SF≠OF)
+
+3. ZF(zero flag)
+    - cmp 등을 실행하면 임시 연산의 결과로 zero 인지 아닌지를 저장하는 플래그.
+    - jump 명령어 등은 이 플래그를 참고하는 것.
+
+4. SF(sign flag)
+    - 연산 결과가 음수이면 발동
+5. 다양 플래그들은 [링크 참조](https://wonillism.tistory.com/202)

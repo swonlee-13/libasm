@@ -54,6 +54,7 @@ eax 와 rax 는 4비트냐 8비트냐의 차이임.
     - 프로시져: call, ret, leave3
     - 시스템 콜:  syscall
 2. 어셈블리의 피연산자 [링크 참조](https://eteo.tistory.com/296)
+    - BYTE: 포인터에서 1바이트 참조(string 에서 char 뽑을 때 이거 쓰면 댐)
     - WORD: 포인터에서 2바이트 참조
     - DWORD: 포인터에서 4바이트 참조
     - QWORD: 포인터에서 8바이트 참조
@@ -62,7 +63,9 @@ eax 와 rax 는 4비트냐 8비트냐의 차이임.
 ## 각 레지스터 용도에 따른 재분류
 
 ### 시스템콜 실행법
-- rax : system call number [링크 참조](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/) 
+- rax : system call number 리눅스: [링크 참조](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/), macos: [링크 참조 1](https://whitesnake1004.tistory.com/2) [링크 참조 2](https://github.com/apple/darwin-xnu/blob/main/bsd/kern/syscalls.master)
+- macos 는 Mech 와 BSD 계층을 둘 다 가지고 있어서 맨 앞 자리를 1, 2 로 계층화해서 관리.
+- 따라서 macOS 에서는 0x2000004 이런 식으로 syscall numbering 을 한다.
 
 - rdi, rsi, rdx, r10. r8, r9 : system call 에 들어가는 인자 순서
 - 사용 예시
@@ -77,7 +80,7 @@ read_example:
 
 ; open(filename, flags, mode)
 open_example:
-        mov     rax, 2          ; sys_open
+        mov     rax, 0x2000005  ; sys_write for macOS
         mov     rdi, filename   ; 파일명
         mov     rsi, 0          ; O_RDONLY
         mov     rdx, 0644o      ; 권한 (옵션)
@@ -267,7 +270,7 @@ ld file.o -o executable
         dec rcx      
         jnz .loop   
    ```
-2. 점프 명령어[링크 참조](https://velog.io/@kitkat-42/libasm)
+2. 점프 명령어 (링크에 설명보다 많은 점프 조건이 있음) [링크 참조](https://velog.io/@kitkat-42/libasm)
     1. 부호 없는 수 비교 시
     - jz/je: Jump if Zero / Equal (ZF=1)
     - jnz/jne: Jump if Not Zero / Not Equal (ZF=0)
@@ -286,3 +289,21 @@ ld file.o -o executable
 4. SF(sign flag)
     - 연산 결과가 음수이면 발동
 5. 다양 플래그들은 [링크 참조](https://wonillism.tistory.com/202)
+
+---
+
+# RAX 의 구조 (rbx 도 동일)
+
+
+![rax 의 구조 그림](https://pwnh4.com/reverse-register-size.png)
+
+- 이렇게 rax 를 쪼개서 rax 안에 값을 여러개 받을 수 있으므로 이것을 활용해서 단순한 값을 저장하는 것도 좋다.
+```
+    mov ah, 0
+    mov al, 0
+    mov bl, 0 ; rbx 도 똑같이 활용할 수 있다.
+```
+
+# errno 사용법
+- macos 에서는 `___error`, Linux 에서는 `__error_location`
+- [참고 자료](https://yechoi.tistory.com/17)

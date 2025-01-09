@@ -3,7 +3,7 @@ BONUS_DIR = bonus
 OBJ_DIR = obj
 NAME = libasm.a
 CC = nasm
-FLAGS = -f elf64
+FLAGS = -f macho64
 AR = ar rcs
 RM = rm -rf
 

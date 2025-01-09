@@ -290,6 +290,9 @@ ld file.o -o executable
     - 연산 결과가 음수이면 발동
 5. 다양 플래그들은 [링크 참조](https://wonillism.tistory.com/202)
 
+6. cmp 와 test
+    - test 연산은 `test al, al` 처럼 쓰며, dst와 src 를 and 연산하는 것.
+    - test 와 jnz 를 섞어서 조건문 연산을 하는 것도 좋다.
 ---
 
 # RAX 의 구조 (rbx 도 동일)
@@ -309,4 +312,7 @@ ld file.o -o executable
 - [참고 자료](https://yechoi.tistory.com/17)
 
 # 겪었던 문제
-1. CMP 명령어는 두 개의 숫자 데이터 필드를 비교한다. 목적지(destination) 피연산자는 레지스터나 메모리에 위치할 수 있다. 원본(source) 피연산자는 상수 데이터이거나 레지스터, 메모리에 위치할 수 있다. (둘 다 상수면 안된다)
+1. error: invalid combination of opcode and operands
+    1. CMP 명령어는 두 개의 숫자 데이터 필드를 비교한다. 목적지(destination) 피연산자는 레지스터나 메모리에 위치할 수 있다. 원본(source) 피연산자는 상수 데이터이거나 레지스터, 메모리에 위치할 수 있다. (둘 다 상수면 안된다)
+    2. mov 도 마찬가지.
+    3. dst 바이트 크기가 src 바이트 크기보다 작을때도 발생.

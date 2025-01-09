@@ -13,9 +13,10 @@ _ft_strcpy:
 .loop:
 	inc		rcx
 
-	mov		BYTE[rdi + rcx], BYTE[rsi + rcx]
-	cmp		BYTE[rdi + rcx], 0
-	jne		.loop
+	mov		al, BYTE[rsi + rcx]
+	mov		BYTE[rdi + rcx], al
+	cmp		al, al
+	jnz		.loop
 
 .done:
 	mov		rax, rdi

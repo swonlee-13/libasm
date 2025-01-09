@@ -29,7 +29,7 @@ _ft_strdup:
 
 .error:
 	call	___error
-	mov		[rax], 12
+	mov		dword [rax], 12
 	xor		rax, rax
 	pop		rdi
 

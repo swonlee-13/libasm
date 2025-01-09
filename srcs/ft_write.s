@@ -17,7 +17,7 @@ _ft_write:
 .error:
 	push	rax
 	call	___error
-	pop		dword [rax]
+	pop		qword [rax]
 	mov		rax, -1
 	ret
 	

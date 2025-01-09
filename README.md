@@ -177,8 +177,10 @@ exit_example:
 
 예시 컴파일 명령:
 ```bash
-nasm -f elf64 file.s -o file.o
-ld file.o -o executable
+nasm -f macho64 file.s -o file.o # 리눅스에서는 elf64
+ar rcs libasm.a obj/ft_read.o [...] #아카이브 파일
+ld file.o -o executable # 리눅스
+ld -macosx_version_min 10.7.0 -lSystem file.o -o executable # macos
 ```
 
 ## System V AMD64 ABI

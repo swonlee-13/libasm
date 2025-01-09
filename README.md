@@ -44,7 +44,7 @@ eax 와 rax 는 4비트냐 8비트냐의 차이임.
 과제에서 스택 관리 등을 할 때는 8바이트인 r 시리즈를 사용하면 된다.
 ```
 
-## 어셈블리 명령 개요
+## 어셈블리 명령 개요 [링크 참조](https://velog.io/@parksj3205/series/nasm-%EC%96%B4%EC%85%88%EB%B8%94%EB%9F%AC)
 1. 명령어의 종류 [링크 참조](https://eteo.tistory.com/296)
     - 데이터 이동: mov
     - 산술 연산: inc, dec, add, sub
@@ -307,3 +307,6 @@ ld file.o -o executable
 # errno 사용법
 - macos 에서는 `___error`, Linux 에서는 `__error_location`
 - [참고 자료](https://yechoi.tistory.com/17)
+
+# 겪었던 문제
+1. CMP 명령어는 두 개의 숫자 데이터 필드를 비교한다. 목적지(destination) 피연산자는 레지스터나 메모리에 위치할 수 있다. 원본(source) 피연산자는 상수 데이터이거나 레지스터, 메모리에 위치할 수 있다. (둘 다 상수면 안된다)

@@ -13,7 +13,8 @@ _ft_strcmp:
 .loop:
 	inc		rcx
 
-	cmp		BYTE[rdi + rcx], BYTE[rsi + rcx]
+	mov		al, BYTE[rdi + rcx]
+	cmp		al, BYTE[rsi + rcx]
 	jne		.done
 
 	cmp		BYTE[rdi + rcx], 0
@@ -26,8 +27,8 @@ _ft_strcmp:
 
 .done:
 	mov		rax, 0
-	add		rax, BYTE[rdi + rcx]
-	sub		rax, BYTE[rsi + rcx]
+	add		rax, QWORD[rdi + rcx]
+	sub		rax, QWORD[rsi + rcx]
 
 	mov		rsp, rbp
 	pop		rbp

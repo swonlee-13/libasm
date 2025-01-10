@@ -12,16 +12,14 @@ _ft_read:
     mov     rax, 0x2000003
     syscall
     
-    jnc     .done
+    jc     .error
+    leave
+    ret
 
 .error:
     push    rax
     call    ___error
     pop     qword [rax]
     mov     rax, -1
-    jmp     .done
-    
-.done:
-    mov     rsp, rbp
-    pop     rbp
+    leave
     ret

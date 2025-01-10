@@ -8,33 +8,27 @@ section .text
     extern	_malloc
 	extern	_ft_strlen
 	extern	_ft_strcpy
-	default rel
 
 _ft_strdup:
 	push	rbp
 	mov		rbp, rsp
 	
 	call	_ft_strlen
-
 	push	rdi
-
+	
 	inc		rax
 	mov		rdi, rax
-
 	call	_malloc
 	jc		.error
 
 	mov		rdi, rax
 	pop		rsi
+
 	call	_ft_strcpy
-	jmp		.done
+	leave
+	ret
 
 .error:
-	call	___error
-	mov		dword [rax], 12
 	xor		rax, rax
-
-.done:
-    mov     rsp, rbp
-    pop     rbp
-    ret
+	leave
+	ret

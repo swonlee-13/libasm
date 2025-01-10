@@ -30,6 +30,5 @@ _ft_strcmp:
 	add		rax, QWORD[rdi + rcx]
 	sub		rax, QWORD[rsi + rcx]
 
-	mov		rsp, rbp
-	pop		rbp
+	leave
 	ret

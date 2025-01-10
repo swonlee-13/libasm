@@ -12,15 +12,14 @@ _ft_write:
 	mov		rax, 0x2000004
 	syscall
 
-	jnc		.done
+	jc		.error
+	leave
+	ret
 
 .error:
 	push	rax
 	call	___error
 	pop		qword [rax]
 	mov		rax, -1
-	
-.done:
-    mov     rsp, rbp
-    pop     rbp
-    ret
+	leave
+	ret

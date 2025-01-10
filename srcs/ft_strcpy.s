@@ -15,7 +15,7 @@ _ft_strcpy:
 
 	mov		al, BYTE[rsi + rcx]
 	mov		BYTE[rdi + rcx], al
-	cmp		al, al
+	cmp		al, 0
 	jnz		.loop
 
 .done:

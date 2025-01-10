@@ -19,8 +19,9 @@ _ft_read:
     call    ___error
     pop     qword [rax]
     mov     rax, -1
-    ret
-
+    jmp     .done
+    
 .done:
     mov     rsp, rbp
     pop     rbp
+    ret

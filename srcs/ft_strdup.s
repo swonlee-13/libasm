@@ -5,25 +5,27 @@
 section .text
     global	_ft_strdup
 	extern	___error
-    extern	malloc
+    extern	_malloc
 	extern	_ft_strlen
 	extern	_ft_strcpy
+	default rel
 
 _ft_strdup:
 	push	rbp
 	mov		rbp, rsp
-	push	rdi
 	
 	call	_ft_strlen
+
+	push	rdi
 
 	inc		rax
 	mov		rdi, rax
 
-	call	malloc
+	call	_malloc
 	jc		.error
 
-	pop		rsi
 	mov		rdi, rax
+	pop		rsi
 	call	_ft_strcpy
 	jmp		.done
 
@@ -31,7 +33,6 @@ _ft_strdup:
 	call	___error
 	mov		dword [rax], 12
 	xor		rax, rax
-	pop		rdi
 
 .done:
     mov     rsp, rbp

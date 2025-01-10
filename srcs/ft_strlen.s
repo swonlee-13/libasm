@@ -13,7 +13,7 @@ _ft_strlen:
     
     cmp     BYTE[rdi + rcx], 0
     jne     .count_loop
-
+    
 .done:
     mov     rax, rcx
     

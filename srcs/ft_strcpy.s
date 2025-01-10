@@ -14,12 +14,14 @@ _ft_strcpy:
 	inc		rcx
 
 	mov		al, BYTE[rsi + rcx]
+	cmp		al, 0
+	je 		.done
+	
 	mov		BYTE[rdi + rcx], al
 	cmp		al, 0
-	jnz		.loop
+	jne		.loop
 
 .done:
 	mov		rax, rdi
-	mov		rsp, rbp
-	pop		rbp
+	leave
 	ret

@@ -318,3 +318,5 @@ ld -macosx_version_min 10.7.0 -lSystem file.o -o executable # macos
     1. CMP 명령어는 두 개의 숫자 데이터 필드를 비교한다. 목적지(destination) 피연산자는 레지스터나 메모리에 위치할 수 있다. 원본(source) 피연산자는 상수 데이터이거나 레지스터, 메모리에 위치할 수 있다. (둘 다 상수면 안된다)
     2. mov 도 마찬가지.
     3. dst 바이트 크기가 src 바이트 크기보다 작을때도 발생.
+2. default rel
+    1. 에러코드 숫자를 직접 입력하는 것 처럼 직접 값을 대입할 때 macos 정책문제가 생겨서 추가했던 요소. strdup 에서씀.

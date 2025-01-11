@@ -13,8 +13,9 @@ _ft_strcmp:
 .loop:
 	inc		rcx
 
-	mov		al, BYTE[rdi + rcx]
-	cmp		al, BYTE[rsi + rcx]
+	movzx	eax, BYTE[rdi + rcx]
+	movzx	edx, BYTE[rsi + rcx]
+	cmp		al, dl
 	jne		.done
 
 	cmp		BYTE[rdi + rcx], 0
@@ -26,9 +27,6 @@ _ft_strcmp:
 	jmp		.loop
 
 .done:
-	mov		rax, 0
-	add		rax, QWORD[rdi + rcx]
-	sub		rax, QWORD[rsi + rcx]
-
+	sub		eax, edx
 	leave
 	ret

@@ -18,7 +18,7 @@ _ft_read:
 
 .error:
     push    rax
-    
+    sub     rsp, 8
     call    ___error
     pop     qword [rax]
     mov     rax, -1

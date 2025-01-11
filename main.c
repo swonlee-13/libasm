@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 
 int main()
 {
@@ -65,5 +66,7 @@ int main()
     free(buf3);
     free(buf2);
     close(fd);
-    return 0;
+
+    read(6, buf3, 100);
+    perror("shit");
 }

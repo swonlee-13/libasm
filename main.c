@@ -18,6 +18,12 @@ int main()
 
     printf("origin: %s\n", test1_1);
     printf("ft_strcpy: %s\n", test2_1);
+    printf("\n\n");
+
+    //test1: ft_strcmp
+    char * test3_1 = "lorem ipsua";
+    char * test3_2 = "lorem ipsum";
+    printf("original : %d\nft_strcmp : %d\n", strcmp(test3_1, test3_2), ft_strcmp(test3_1, test3_2));
 
 
     // -----test3: ft_read-----  

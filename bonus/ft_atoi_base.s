@@ -26,7 +26,7 @@ _ft_atoi_base
     mov     rdi, rsi
     call    _ft_strlen      ;기수 문자열의 길이 rax 로 반환
     
-    ;기수처리 예외 조건 
+    ;기수처리 예외 조건
     cmp     rax, 2
     jl      .finish_with_zero
 
